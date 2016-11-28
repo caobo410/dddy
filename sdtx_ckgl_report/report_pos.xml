@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <report
+                id="report_sdtx_pos"
+                model="sdtx.pos"
+                string="report_sdtx_pos"
+                name="sdtx_ckgl_report.report_sdtx_pos_main"
+                file="sdtx_pos_report"
+                report_type="qweb-pdf" />
+        <template id="report_sdtx_pos_main">
+            <t t-call="report.html_container">
+                <t t-call="report.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <!--<t t-call="report.external_layout">-->
+                        <div class="page">
+                            <!--summary-->
+                            <style type="text/css">
+    /*share*/
+    *{margin:0; padding:0;}
+    em,i{ font-style:normal; }
+    body{color:#333;background:#e2e2e2;font-family:Microsoft YaHei;line-height:1.785;
+    ont-family: Arial,"微软雅黑","Microsoft yahei","Hiragino Sans GB","冬青黑体简体中文 w3","Microsoft Yahei","Hiragino Sans GB","冬青黑体简体中文 w3",STXihei,"华文细黑",SimSun,"宋体",Heiti,"黑体",sans-serif;
+    }
+    /* CSS Document */
+    div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,seletc,option{padding:0; margin:0 auto;}
+    ul,li { list-style:none;}
+    a{text-decoration:none;color:#323232;}
+    a:hover{color:#009feb;}
+    img {border:none;}
+    .clear {clear:both;overflow:hidden;height:0;}
+    body{margin:0;padding:0;font-size:10px; color:#323232;font-family:"微软雅黑"; background:#fff;}
+
+    /*1mm=3.78px   换算单位*/
+
+    .main{ width: 300px; height:500px; background: #FFF;  overflow: hidden;}
+    .main .main_box{ width: 260px; height:490px; background: #FFF;margin: 20px; overflow: hidden;}
+    .table{width:90%;margin:0 auto; margin-top: 10px;border-spacing: 1px;}
+    .table td{height:12px;background:#fff;}
+    .table td{text-align:left; text-indent:0.1em;}
+    .table td.tal{text-align:left;}
+    .table thead td{ text-align: center;position: relative;}
+
+    .table td.juzhong{ height: 12px; line-height: 12px; text-align: center; font-size:10px; color: #323232;}
+    .table td.zi_right{text-align: right; }
+    .table td.ju{ text-align: center; }
+                            </style>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td colspan="6" class="juzhong">顺道天下</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" >打印时间</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.date_confirm"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >订单状态</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.state"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >买家</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.buyers"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >桌号</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.desk_no"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >就餐人数</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.people_num"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="o.line_id" t-as="l">
+                                        <td >
+                                            <div style="width:100%;overflow: hidden;padding:0px 0px 0px 0px; margin:0px 0px 0px 0px">
+                                                <span t-field="l.name"/>
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <span t-field="l.num"/>
+                                        </td>
+                                        <td >
+                                            <span t-field="l.price"/>
+                                        </td>
+                                        <td >
+                                            <span t-field="l.sum_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >总金额</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.sum_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >总金额</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.sum_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >支付折扣币</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.sum_price"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" >商家留言</td>
+                                        <td colspan="4" width="120">
+                                            <span t-field="o.sum_price"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
