@@ -16,60 +16,43 @@
                         <div class="page">
                             <!--summary-->
                             <style type="text/css">
-    /*share*/
-    *{margin:0; padding:0;}
-    em,i{ font-style:normal; }
-    body{color:#333;background:#e2e2e2;font-family:Microsoft YaHei;line-height:1.785;
-    ont-family: Arial,"微软雅黑","Microsoft yahei","Hiragino Sans GB","冬青黑体简体中文 w3","Microsoft Yahei","Hiragino Sans GB","冬青黑体简体中文 w3",STXihei,"华文细黑",SimSun,"宋体",Heiti,"黑体",sans-serif;
-    }
-    /* CSS Document */
-    div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,seletc,option{padding:0; margin:0 auto;}
-    ul,li { list-style:none;}
-    a{text-decoration:none;color:#323232;}
-    a:hover{color:#009feb;}
-    img {border:none;}
-    .clear {clear:both;overflow:hidden;height:0;}
-    body{margin:0;padding:0;font-size:14px; color:#323232;font-family:"微软雅黑"; background:#fff;}
+                                .table1{margin:10 auto;width:100%;border-spacing:1px;border-collapse:collapse;table-layout:fixed;}
+                                .table1 td{height:16px;}
+                                .table1 td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
+                                .table1 td.juzhong{ height: 50px; line-height: 50px; text-align: center; font-size:28px; color: #323232;}
+                                .table1 td.zi_right{text-align: right;}
+                                .table1 td.ju{ text-align: center;}
 
-    /*1mm=3.78px   换算单位*/
-
-    .main{ width: 1056.132px; height:910.98px; background: #FFF;  overflow: hidden;}
-    .main .main_box{ width: 1016.132px; height:870.98px; background: #FFF;margin: 10px; overflow: hidden;}
-    .table1{width:90%;margin:0 auto; margin-top: 10px;border-spacing: 2px;}
-    .table1 td{height:20px;background:#fff;}
-    .table1 td{text-align:left; text-indent:0.1em;}
-    .table1 td.tal{text-align:left;}
-    .table1 thead td{ text-align: center;position: relative;}
-
-    .table1 td.juzhong{ height: 30px; line-height: 30px; text-align: center; font-size:24px; color: #323232;}
-    .table1 td.zi_right{text-align: right; }
-    .table1 td.ju{ text-align: center; }
-
-    .table{width:100%;margin:0 auto; border-spacing: 2px; border:solid 1pt Black;}
-    .table td{height:20px;background:#fff;border-right:1px solid Black;border-bottom:1px solid Black;}
-    .table td{text-align:left; text-indent:0.1em;}
-    .table thead td{ text-align: center;position: relative;border-right:1px solid Black;border-left:1px solid Black;}
-    .table td.zi_right{ text-align: right; }
-    .table td.ju{ text-align: center; }
+                                .table{margin:10 auto;width:100%;border-spacing:1px;border:1px solid #dddddd;border-collapse:collapse;table-layout:fixed;}
+                                .table td{height:16px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;}
+                                .table td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
+                                .table td.zi_right{text-align: right;}
+                                .table td.ju{ text-align: center;}
                             </style>
                             <table class="table1">
-                                <thead>
+                                <tbody>
+                                    <tr height="0px">
+                                        <td width="70" style="text-align: center"></td>
+                                        <td width="130" style="text-align: center"></td>
+                                        <td width="70" style="text-align: center"></td>
+                                        <td width="130" style="text-align: center"></td>
+                                        <td width="70" style="text-align: center"></td>
+                                        <td width="130" style="text-align: center"></td>
+                                    </tr>
                                     <tr>
                                         <td colspan="6" class="juzhong">销售出库单</td>
                                     </tr>
-                                </thead>
-                                <tbody>
                                     <tr>
-                                        <td width="100">单据编号</td>
-                                        <td width="120">
+                                        <td width="70">单据编号</td>
+                                        <td width="140">
                                             <span t-field="o.name"/>
                                         </td>
-                                        <td width="100">发货仓库</td>
-                                        <td width="120">
+                                        <td width="70">发货仓库</td>
+                                        <td width="140">
                                             <span t-field="o.warehouse"/>
                                         </td>
-                                        <td width="100">运费</td>
-                                        <td width="100">
+                                        <td width="70">运费</td>
+                                        <td width="140">
                                             <span t-field="o.send_money"/>
                                         </td>
                                     </tr>
@@ -112,19 +95,17 @@
                             <!--end:打印内容上半部分区域-->
                             <!--begin:打印内容下半部分区域-->
                             <table class="table">
-                                <thead>
-                                    <tr >
-                                        <td width="70">商品编号</td>
-                                        <td width="260">商品名称</td>
-                                        <td width="60">规格型号</td>
-                                        <td width="50">单位</td>
-                                        <td width="40">数量</td>
-                                        <td width="50">单价</td>
-                                        <td width="70">金额</td>
-                                        <td width="60">订单编号</td>
-                                    </tr>
-                                </thead>
                                 <tbody>
+                                    <tr >
+                                        <td width="70" style="text-align: center">商品编号</td>
+                                        <td width="200" style="text-align: center">商品名称</td>
+                                        <td width="60" style="text-align: center">规格型号</td>
+                                        <td width="50" style="text-align: center">单位</td>
+                                        <td width="40" style="text-align: center">数量</td>
+                                        <td width="50" style="text-align: center">单价</td>
+                                        <td width="70" style="text-align: center">金额</td>
+                                        <td width="60" style="text-align: center">订单编号</td>
+                                    </tr>
                                     <tr t-foreach="o.line_id" t-as="l" height ="20px">
                                         <!--<td>-->
                                         <!--<t>-->
@@ -135,9 +116,7 @@
                                             <span t-field="l.code"/>
                                         </td>
                                         <td width="260">
-                                            <div style="width:100%;overflow: hidden;padding:0px 0px 0px 0px; margin:0px 0px 0px 0px">
-                                                <span t-field="l.name"/>
-                                            </div>
+                                            <span t-field="l.name"/>
                                         </td>
                                         <td width="60">
                                             <span t-field="l.spec"/>

@@ -12,6 +12,9 @@
 import logging
 from openerp import fields,models,api
 from datetime import datetime
+import win32ui
+import win32print
+import win32con
 date_ref = datetime.now().strftime('%Y-%m-%d')
 _logger = logging.getLogger(__name__)
 
@@ -43,6 +46,21 @@ class ckgl_dddy(models.Model):
     messages = fields.Char(string='Messages', help='Messages')
     user_id = fields.Many2one('res.users', string='Operator')
     date_confirm = fields.Date(string='Date', size=64, help='Date')
+    # {'name': 'SD201601001', 'warehouse': '济南仓库', 'state': '已审批', 'send_user': '收货人王', 'tel': '15562666255',
+    #  'address': '山东省济南市历城区山大路华强11层123号', 'send_date': '2016-10-15', 'express': '顺丰', 'express_code': '7686884848484', 'send_money': '15.00',
+    #  'sum_money': '2000.00' }
+    @api.multi
+    def merge_order(self, code):
+        hDC = win32ui.CreateDC()
+        hDC.CreatePrinterDC(win32print.GetDefaultPrinter())
+        hDC.StartDoc('1231')
+        hDC.StartPage()
+        hDC.SetMapMode(win32con.MM_TWIPS)
+
+        ulc_x = 1000
+        ulc_y = -1000
+        lrc_x = 11500
+        lrc_y = -11500
 
     _defaults = {
         'date_confirm': date_ref,

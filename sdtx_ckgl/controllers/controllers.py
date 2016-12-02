@@ -17,6 +17,7 @@ class OrderController(http.Controller):
     @authorizer.authorize
     @http.route('/api/sdtx_ckgl/<database>', type='http', auth='none', methods=['GET'])
     def sdtx_ckgl(self, database, login, password, type, warehouse_list, line_list):
+        # line_list = json.dumps(line_list)
         if type:
             if type == u'8':
                 name = u'销售出库单'
@@ -62,12 +63,6 @@ class OrderController(http.Controller):
         for line_value in line_values:
             ckgl_obj = sdtx_ckgl_obj.search([('default_id', '=', line_value['default_id'])])
             line_value['line_id'] = ckgl_obj.id
-            name = line_value['name']
-            if len(name) >= 36:
-                line_value['name'] = name[:36]
-            spec = line_value['spec']
-            if len(spec) >= 8:
-                line_value['spec'] = spec[:8]
             sdtx_ckgl_line_obj.create(line_value)
         report_objs = self.current_env['report']
         ckgl_objs = sdtx_ckgl_obj.search([])
