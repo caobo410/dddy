@@ -16,6 +16,14 @@
                         <div class="page">
                             <!--summary-->
                             <style type="text/css">
+                                /* CSS Document */
+                                div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,seletc,option{padding:0; margin:0 auto;}
+                                ul,li { list-style:none;}
+                                a{text-decoration:none;color:#323232;}
+                                a:hover{color:#009feb;}
+                                img {border:none;}
+                                .clear {clear:both;overflow:hidden;height:0;}
+                                body{margin:0;padding:0;font-size:14px; color:#323232;font-family:"微软雅黑"; background:#fff;}
                                 .table1{margin:10 auto;width:100%;border-spacing:1px;border-collapse:collapse;table-layout:fixed;}
                                 .table1 td{height:16px;}
                                 .table1 td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
