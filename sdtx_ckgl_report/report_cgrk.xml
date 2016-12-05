@@ -16,24 +16,16 @@
                         <div class="page">
                             <!--summary-->
                             <style type="text/css">
-                                /* CSS Document */
-                                div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,seletc,option{padding:0; margin:0 auto;}
-                                ul,li { list-style:none;}
-                                a{text-decoration:none;color:#323232;}
-                                a:hover{color:#009feb;}
-                                img {border:none;}
-                                .clear {clear:both;overflow:hidden;height:0;}
-                                body{margin:0;padding:0;font-size:14px; color:#323232;font-family:"微软雅黑"; background:#fff;}
                                 .table1{margin:10 auto;width:100%;border-spacing:1px;border-collapse:collapse;table-layout:fixed;}
-                                .table1 td{height:16px;}
-                                .table1 td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
+                                .table1 td{height:12px;}
+                                .table1 td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;}
                                 .table1 td.juzhong{ height: 50px; line-height: 50px; text-align: center; font-size:28px; color: #323232;}
                                 .table1 td.zi_right{text-align: right;}
                                 .table1 td.ju{ text-align: center;}
 
                                 .table{margin:10 auto;width:100%;border-spacing:1px;border:1px solid #dddddd;border-collapse:collapse;table-layout:fixed;}
-                                .table td{height:16px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;}
-                                .table td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
+                                .table td{height:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;}
+                                .table td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;}
                                 .table td.zi_right{text-align: right;}
                                 .table td.ju{ text-align: center;}
                             </style>
@@ -124,12 +116,12 @@
                                 </tbody>
                             </table>
                             <div class="row mt16 mb16 ">
-                                <div class="col-xs-2" ><p align="center">录入人</p></div>
-                                <div class="col-xs-2" t-if="o.operator"><p t-field="o.operator"/></div>
-                                <div class="col-xs-2" ><p  align="center">审核人</p></div>
-                                <div class="col-xs-2" t-if="o.check_user"><p t-field="o.check_user"/></div>
-                                <div class="col-xs-2" ><p  align="center">打印日期</p></div>
-                                <div class="col-xs-2" t-if="o.date_confirm"><p t-field="o.date_confirm"/></div>
+                                <div class="col-xs-2" width="70" style="font-size:12px"><p align="center">录入人</p></div>
+                                <div class="col-xs-2" width="130" style="font-size:12px" t-if="o.operator"><p t-field="o.operator"/></div>
+                                <div class="col-xs-2" width="70" style="font-size:12px"><p  align="center">审核人</p></div>
+                                <div class="col-xs-2" width="130" style="font-size:12px" t-if="o.check_user"><p t-field="o.check_user"/></div>
+                                <div class="col-xs-2" width="70" style="font-size:12px"><p  align="center">打印日期</p></div>
+                                <div class="col-xs-2" width="130" style="font-size:12px" t-if="o.date_confirm"><p t-field="o.date_confirm"/></div>
                             </div>
                         </div>
                     </t>
