@@ -17,7 +17,6 @@ class OrderController(http.Controller):
     @authorizer.authorize
     @http.route('/api/sdtx_ckgl/<database>', type='http', auth='none', methods=['GET'])
     def sdtx_ckgl(self, database, login, password, type, warehouse_list, line_list):
-        # line_list = json.dumps(line_list)
         if type:
             if type == u'8':
                 name = u'销售出库单'
@@ -51,10 +50,15 @@ class OrderController(http.Controller):
         try:
             warehouse_list = warehouse_list.replace('\"', '\'')
             line_list = line_list.replace('\"', '\'')
-            warehouse_values = eval(warehouse_list.decode('raw_unicode_escape'))
-            line_values = eval(line_list.decode('raw_unicode_escape'))
+            warehouse_list = warehouse_list.replace('fail', ' ')
+            line_list = line_list.replace('fail', ' ')
+            warehouse_values = eval(warehouse_list)
+            line_values = eval(line_list)
         except:
             return rest.render_json({'status': 'no', 'message': 'warehouse_values/line_values参数有问题！'})
+        sjs = str(random.randint(100, 999))
+        str_time = str(datetime.now())
+        filename = str_time[:4] + str_time[5:7] + str_time[8:10] + str_time[11:13] + str_time[14:16] + str_time[17:18] + type + sjs
         self.current_env.cr.execute('delete from ckgl_dddy;delete from dddy_line')
         sdtx_ckgl_obj = self.current_env['ckgl.dddy']
         sdtx_ckgl_line_obj = self.current_env['dddy.line']
@@ -67,7 +71,4 @@ class OrderController(http.Controller):
         report_objs = self.current_env['report']
         ckgl_objs = sdtx_ckgl_obj.search([])
         values = report_objs.get_pdf(ckgl_objs, print_name)
-        sjs = str(random.randint(100, 999))
-        str_time = str(datetime.now())
-        filename = str_time[:4] + str_time[5:7] + str_time[8:10] + str_time[11:13] + str_time[14:16] + str_time[17:18] + type + sjs
         return rest.render_pdf(values, filename)

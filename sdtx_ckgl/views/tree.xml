@@ -20,10 +20,10 @@
             <field name="priority">1</field>
             <field name="arch" type="xml">
                 <tree string="">
-                    <field name='name' />
-                    <field name='buyers' />
-                    <field name='desk_no' />
-                    <field name='people_num' />
+                    <field name='name'/>
+                    <field name='buyers'/>
+                    <field name='desk_no'/>
+                    <field name='people_num'/>
                 </tree>
             </field>
         </record>
