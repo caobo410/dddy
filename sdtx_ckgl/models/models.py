@@ -77,18 +77,23 @@ class sdtx_pos(models.Model):
     name = fields.Char(string='订单编号', size=64, required=True, help="订单名称")
     state = fields.Char(string='订单状态', help="订单状态")
     buyers = fields.Char(string='买家', help="买家")
+    shop = fields.Char(string='店铺', help="店铺")
     desk_no = fields.Char(string='桌号', help="桌号")
     people_num = fields.Char(string='就餐人数', help="就餐人数")
     sum_price = fields.Char(string='总金额', help="总金额")
+    print_time = fields.Char(string='打印时间', help="打印时间")
+    order_time = fields.Char(string='订单日期', help="订单日期")
     line_id = fields.One2many('pos.line', 'line_id', string='明细', copy=True)
     sum_zkb = fields.Char(string='支付折扣币', help="支付折扣币")
     messages = fields.Char(string='商家留言', help="商家留言")
+    QR = fields.Char(string='二维码', help="二维码")
     user_id = fields.Many2one('res.users', string='Operator')
     date_confirm = fields.Date(string='Date', size=64, required=True, help="Date")
 
     _defaults = {
         'date_confirm': date_ref,
         'user_id': lambda cr, uid, id, c={}: id,
+        'QR': 'www.76sd.com',
     }
 class pos_line(models.Model):
     _name = "pos.line"

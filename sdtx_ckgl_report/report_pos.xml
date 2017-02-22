@@ -10,106 +10,72 @@
                 report_type="qweb-pdf" />
         <template id="report_sdtx_pos_main">
             <t t-call="report.html_container">
-                <t t-call="report.html_container">
-                    <t t-foreach="docs" t-as="o">
-                        <!--<t t-call="report.external_layout">-->
-                        <div class="page">
-                            <!--summary-->
-                            <style type="text/css">
-                                .table1{margin:10 auto;width:100%;border-spacing:1px;border-collapse:collapse;table-layout:fixed;}
-                                .table1 td{height:16px;}
-                                .table1 td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
-                                .table1 td.juzhong{ height: 50px; line-height: 50px; text-align: center; font-size:28px; color: #323232;}
-                                .table1 td.zi_right{text-align: right;}
-                                .table1 td.ju{ text-align: center;}
-
-                                .table{margin:10 auto;width:100%;border-spacing:1px;border:1px solid #dddddd;border-collapse:collapse;table-layout:fixed;}
-                                .table td{height:16px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;}
-                                .table td{word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;}
-                                .table td.zi_right{text-align: right;}
-                                .table td.ju{ text-align: center;}
-                            </style>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td colspan="6" class="juzhong">顺道天下</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2" >打印时间</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.date_confirm"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >订单状态</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.state"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >买家</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.buyers"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >桌号</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.desk_no"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >就餐人数</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.people_num"/>
-                                        </td>
-                                    </tr>
-                                    <tr t-foreach="o.line_id" t-as="l">
-                                        <td >
-                                            <div style="width:100%;overflow: hidden;padding:0px 0px 0px 0px; margin:0px 0px 0px 0px">
-                                                <span t-field="l.name"/>
-                                            </div>
-                                        </td>
-                                        <td >
-                                            <span t-field="l.num"/>
-                                        </td>
-                                        <td >
-                                            <span t-field="l.price"/>
-                                        </td>
-                                        <td >
-                                            <span t-field="l.sum_price"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >总金额</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.sum_price"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >总金额</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.sum_price"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >支付折扣币</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.sum_price"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" >商家留言</td>
-                                        <td colspan="4" width="120">
-                                            <span t-field="o.sum_price"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <t t-foreach="docs" t-as="o">
+                    <!--<t t-call="report.external_layout">-->
+                    <div class="page">
+                        <!--summary-->
+                        <div class="col-xs-12" style="font-size:22px; text-align:center">
+                            <p>顺道天下</p>
                         </div>
-                    </t>
+                        <div class="col-xs-12" style="font-size:20px; text-align:center" t-if="o.shop">
+                            <p t-field="o.shop"/>
+                        </div>
+                        <div class="col-xs-12" style="font-size:16px;height:20px; line-height: 18px;font-size:14px;padding:3px 0px 3px 0px " t-if="o.print_time">
+                            <p t-field="o.print_time"/>
+                        </div>
+                        <div class="col-xs-12" style="font-size:16px;height:20px; line-height: 18px;font-size:14px;padding:3px 0px 3px 0px" t-if="o.name">
+                            <p t-field="o.name"/>
+                        </div>
+                        <div class="col-xs-12" style="font-size:16px;height:20px; line-height: 18px;font-size:14px;padding:3px 0px 3px 0px" t-if="o.order_time">
+                            <p t-field="o.order_time"/>
+                        </div>
+                        <div class="col-xs-12" style="font-size:16px;height:20px; line-height: 18px;font-size:14px;padding:3px 0px 3px 0px" t-if="o.desk_no">
+                            <p t-field="o.desk_no"/>
+                        </div>
+                        <div class="col-xs-12" style="font-size:16px;height:30px; line-height: 18px;font-size:14px;padding:3px 0px 3px 0px" t-if="o.people_num">
+                            <p t-field="o.people_num"/>
+                        </div>
+                        <table>
+                            <tbody>
+                                <tr >
+                                    <td width="300" style="text-align: center" colspan="4">*****************************************************</td>
+                                </tr>
+                                <tr>
+                                    <td width="120" style="font-size:16px;padding-left:0px;padding-right:0px;text-align:center">品名</td>
+                                    <td width="50" style="font-size:16px;padding-left:0px;padding-right:0px;text-align:center">数量</td>
+                                    <td width="60" style="font-size:16px;padding-left:0px;padding-right:0px;text-align:center">单价</td>
+                                    <td width="70" style="font-size:16px;padding-left:0px;padding-right:0px;text-align:center">小计</td>
+                                </tr>
+                                <tr>
+                                    <td width="300" style="text-align: center" colspan="4">*****************************************************</td>
+                                </tr>
+                                <tr t-foreach="o.line_id" t-as="l" height ="20px">
+                                    <td width="120">
+                                        <span t-field="l.name"/>
+                                    </td>
+                                    <td width="50" style="text-align: right">
+                                        <span t-field="l.num"/>
+                                    </td>
+                                    <td width="60" style="text-align: right">
+                                        <span t-field="l.price"/>
+                                    </td>
+                                    <td width="70" style="text-align: right">
+                                        <span t-field="l.sum_price"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>**************************************************</p>
+                            </div>
+                            <div class="col-xs-12" style="font-size:16px;" t-if="o.sum_price"><p t-field="o.sum_price"/></div>
+                        </div>
+                        <div class="row" style="text-align:center">
+                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.QR, 600, 150)" style="width:200px;height:200px;"/>
+                        </div>
+                        <!--<div class="row" style="text-align:center" t-if="o.QR"><p t-field="o.QR"/></div>-->
+                    </div>
                 </t>
             </t>
         </template>

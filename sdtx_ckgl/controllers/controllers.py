@@ -72,3 +72,33 @@ class OrderController(http.Controller):
         ckgl_objs = sdtx_ckgl_obj.search([])
         values = report_objs.get_pdf(ckgl_objs, print_name)
         return rest.render_pdf(values, filename)
+    @authorizer.authorize
+    @http.route('/api/sdtx_pos/<database>', type='http', auth='none', methods=['GET'])
+    def sdtx_pos(self, database, login, password, pos_list, line_list, qr_list):
+        try:
+            pos_list = pos_list.replace('\"', '\'')
+            line_list = line_list.replace('\"', '\'')
+            pos_list = pos_list.replace('fail', ' ')
+            line_list = line_list.replace('fail', ' ')
+            pos_values = eval(pos_list)
+            line_values = eval(line_list)
+            qr_values = eval(qr_list)
+        except:
+            return rest.render_json({'status': 'no', 'message': 'warehouse_values/line_values参数有问题！'})
+        sjs = str(random.randint(100, 999))
+        str_time = str(datetime.now())
+        filename = str_time[:4] + str_time[5:7] + str_time[8:10] + str_time[11:13] + str_time[14:16] + str_time[17:18] + sjs
+        self.current_env.cr.execute('delete from sdtx_pos;delete from pos_line')
+        pos_obj = self.current_env['sdtx.pos']
+        pos_line_obj = self.current_env['pos.line']
+        pos_values['QR'] = 'http://m.76sd.com/storeOrder/inputPrice?shangjia_id=' + qr_values['shangjia_id'] + '%26order_id=' + '' + qr_values['order_id']
+        # print pos_values['QR']
+        pos_obj_id = pos_obj.create(pos_values)
+        for line_value in line_values:
+            line_value['line_id'] = pos_obj_id.id
+            pos_line_obj.create(line_value)
+        report_objs = self.current_env['report']
+        pos_print_obj = pos_obj.search([])
+        print_name = u'sdtx_ckgl_report.report_sdtx_pos_main'
+        values = report_objs.get_pdf(pos_print_obj, print_name)
+        return rest.render_pdf(values, filename)

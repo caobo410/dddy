@@ -64,11 +64,11 @@
                             <field name='people_num' />
                         </group>
                         <group>
-                            <field name='sum_price'/>
-                            <field name='sum_zkb' />
-                            <field name='messages' />
-                            <field name='user_id' />
-                            <field name='date_confirm' />
+                            <field name='shop'/>
+                            <field name='sum_price' />
+                            <field name='QR' />
+                            <field name='print_time' />
+                            <field name='order_time' />
                         </group>
                     </group>
                     <notebook colspan="4">

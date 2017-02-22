@@ -21,7 +21,7 @@
             <field name="arch" type="xml">
                 <tree string="">
                     <field name='name'/>
-                    <field name='buyers'/>
+                    <field name='shop'/>
                     <field name='desk_no'/>
                     <field name='people_num'/>
                 </tree>
