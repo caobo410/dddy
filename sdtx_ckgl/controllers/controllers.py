@@ -4,7 +4,6 @@ import rest
 import authorizer
 from datetime import datetime
 import random
-import json
 
 try:
     import cStringIO as StringIO
@@ -80,6 +79,9 @@ class OrderController(http.Controller):
             line_list = line_list.replace('\"', '\'')
             pos_list = pos_list.replace('fail', ' ')
             line_list = line_list.replace('fail', ' ')
+            pos_list = pos_list.decode("unicode-escape")
+            line_list = line_list.decode("unicode-escape")
+            qr_list = qr_list.decode("unicode-escape")
             pos_values = eval(pos_list)
             line_values = eval(line_list)
             qr_values = eval(qr_list)
