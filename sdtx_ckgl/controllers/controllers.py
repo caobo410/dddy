@@ -39,9 +39,9 @@ class OrderController(http.Controller):
                 name = u'其他入库单'
                 print_name = u'sdtx_ckgl_report.report_sdtx_qtrk_main'
             else:
-                return rest.render_json({'status': 'no', 'message': 'type类型不正确！'})
+                return rest.render_json({'status': 'no', 'message': u'type类型不正确！'})
         else:
-            return rest.render_json({'status': 'no', 'message': 'type不能为空！'})
+            return rest.render_json({'status': 'no', 'message': u'type不能为空！'})
         if not warehouse_list:
             return rest.render_json({'status': 'no', 'message': name + u'不能为空！'})
         if not line_list:
@@ -51,10 +51,12 @@ class OrderController(http.Controller):
             line_list = line_list.replace('\"', '\'')
             warehouse_list = warehouse_list.replace('fail', ' ')
             line_list = line_list.replace('fail', ' ')
+            warehouse_list = warehouse_list.decode('unicode-escape')
+            line_list = line_list.decode('unicode-escape')
             warehouse_values = eval(warehouse_list)
             line_values = eval(line_list)
         except:
-            return rest.render_json({'status': 'no', 'message': 'warehouse_values/line_values参数有问题！'})
+            return rest.render_json({'status': 'no', 'message': u'warehouse_values/line_values参数有问题！'})
         sjs = str(random.randint(100, 999))
         str_time = str(datetime.now())
         filename = str_time[:4] + str_time[5:7] + str_time[8:10] + str_time[11:13] + str_time[14:16] + str_time[17:18] + type + sjs
@@ -79,21 +81,21 @@ class OrderController(http.Controller):
             line_list = line_list.replace('\"', '\'')
             pos_list = pos_list.replace('fail', ' ')
             line_list = line_list.replace('fail', ' ')
-            pos_list = pos_list.decode("unicode-escape")
-            line_list = line_list.decode("unicode-escape")
-            qr_list = qr_list.decode("unicode-escape")
+            pos_list = pos_list.decode('unicode-escape')
+            line_list = line_list.decode('unicode-escape')
+            qr_list = qr_list.decode('unicode-escape')
             pos_values = eval(pos_list)
             line_values = eval(line_list)
             qr_values = eval(qr_list)
         except:
-            return rest.render_json({'status': 'no', 'message': 'warehouse_values/line_values参数有问题！'})
+            return rest.render_json({'status': u'no', 'message': u'warehouse_values/line_values参数有问题！'})
         sjs = str(random.randint(100, 999))
         str_time = str(datetime.now())
         filename = str_time[:4] + str_time[5:7] + str_time[8:10] + str_time[11:13] + str_time[14:16] + str_time[17:18] + sjs
         self.current_env.cr.execute('delete from sdtx_pos;delete from pos_line')
         pos_obj = self.current_env['sdtx.pos']
         pos_line_obj = self.current_env['pos.line']
-        pos_values['QR'] = 'http://m.76sd.com/storeOrder/inputPrice?shangjia_id=' + qr_values['shangjia_id'] + '%26order_id=' + '' + qr_values['order_id']
+        pos_values['QR'] = u'http://m.76sd.com/storeOrder/inputPrice?shangjia_id=' + qr_values['shangjia_id'] + u'%26order_id=' + '' + qr_values['order_id']
         # print pos_values['QR']
         pos_obj_id = pos_obj.create(pos_values)
         for line_value in line_values:
