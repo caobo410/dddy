@@ -1,0 +1,75 @@
+#!/bin/sh
+
+PATH=/bin:/sbin:/usr/bin
+#代码中openerp-server存放位置
+DAEMON=/opt/odoo-8.0/openerp-server
+NAME=openerp-server
+DESC=openerp-server
+
+# Specify the user name (Default: odoo).
+#数据库用户名称.
+USER=lhd
+
+# Specify an alternate config file (Default: /etc/odoo-server.conf).
+#配置文件存放位置.
+CONFIGFILE="/etc/odoo-server.conf"
+
+# pidfile
+PIDFILE=/var/run/$NAME.pid
+
+# Additional options that are passed to the Daemon.
+DAEMON_OPTS="-c $CONFIGFILE"
+
+[ -x $DAEMON ] || exit 0
+[ -f $CONFIGFILE ] || exit 0
+
+checkpid() {
+    [ -f $PIDFILE ] || return 1
+    pid=`cat $PIDFILE`
+    [ -d /proc/$pid ] && return 0
+    return 1
+}
+
+case "${1}" in
+        start)
+                echo -n "Starting ${DESC}: "
+
+                start-stop-daemon --start --quiet --pidfile ${PIDFILE} \
+                        --chuid ${USER} --background --make-pidfile \
+                        --exec ${DAEMON} -- ${DAEMON_OPTS}
+
+                echo "${NAME}."
+                ;;
+
+        stop)
+                echo -n "Stopping ${DESC}: "
+
+                start-stop-daemon --stop --quiet --pidfile ${PIDFILE} \
+                        --oknodo
+
+                echo "${NAME}."
+                ;;
+
+        restart|force-reload)
+                echo -n "Restarting ${DESC}: "
+
+                start-stop-daemon --stop --quiet --pidfile ${PIDFILE} \
+                        --oknodo
+      
+                sleep 1
+
+                start-stop-daemon --start --quiet --pidfile ${PIDFILE} \
+                        --chuid ${USER} --background --make-pidfile \
+                        --exec ${DAEMON} -- ${DAEMON_OPTS}
+
+                echo "${NAME}."
+                ;;
+
+        *)
+                N=/etc/init.d/${NAME}
+                echo "Usage: ${NAME} {start|stop|restart|force-reload}" >&2
+                exit 1
+                ;;
+esac
+
+exit 0
