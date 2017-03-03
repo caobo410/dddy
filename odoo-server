@@ -1,17 +1,14 @@
 #!/bin/sh
 
 PATH=/bin:/sbin:/usr/bin
-#代码中openerp-server存放位置
-DAEMON=/opt/odoo-8.0/openerp-server
-NAME=openerp-server
-DESC=openerp-server
+DAEMON=/home/sdtx/shmj-server
+NAME=shmj-server
+DESC=shmj-server
 
 # Specify the user name (Default: odoo).
-#数据库用户名称.
-USER=lhd
+USER=sdtx
 
 # Specify an alternate config file (Default: /etc/odoo-server.conf).
-#配置文件存放位置.
 CONFIGFILE="/etc/odoo-server.conf"
 
 # pidfile
