@@ -81,13 +81,13 @@ class OrderController(http.Controller):
             line_list = line_list.replace('\"', '\'')
             pos_list = pos_list.replace('fail', ' ')
             line_list = line_list.replace('fail', ' ')
-            pos_list = pos_list.decode('unicode-escape')
-            line_list = line_list.decode('unicode-escape')
-            qr_list = qr_list.decode('unicode-escape')
-            if pos_list is None:
+            # pos_list = pos_list.decode('unicode-escape')
+            # line_list = line_list.decode('unicode-escape')
+            # qr_list = qr_list.decode('unicode-escape')
+            if pos_list == '' or pos_list == 'null':
                 return rest.render_json({'status': u'no', 'message': u'pos_list/line_list参数有问题！'})
             pos_values = eval(pos_list)
-            if not line_list is None and line_list != '':
+            if line_list != '' and line_list != 'null':
                 line_values = eval(line_list)
             qr_values = eval(qr_list)
         except:
@@ -102,7 +102,7 @@ class OrderController(http.Controller):
         pos_values['QR'] = u'http://m.76sd.com/storeOrder/inputPrice?shangjia_id=' + qr_values['shangjia_id'] + u'%26order_id=' + '' + qr_values['order_id']
         # print pos_values['QR']
         pos_obj_id = pos_obj.create(pos_values)
-        if not line_list is None and line_list != '':
+        if line_list != '' and line_list != 'null':
             for line_value in line_values:
                 line_value['line_id'] = pos_obj_id.id
                 pos_line_obj.create(line_value)
