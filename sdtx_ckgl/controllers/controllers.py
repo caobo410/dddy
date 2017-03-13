@@ -81,14 +81,14 @@ class OrderController(http.Controller):
             line_list = line_list.replace('\"', '\'')
             pos_list = pos_list.replace('fail', ' ')
             line_list = line_list.replace('fail', ' ')
-            # pos_list = pos_list.decode('unicode-escape')
-            # line_list = line_list.decode('unicode-escape')
-            # qr_list = qr_list.decode('unicode-escape')
             if pos_list == '' or pos_list == 'null':
-                return rest.render_json({'status': u'no', 'message': u'pos_list/line_list参数有问题！'})
+                return rest.render_json({'status': u'no', 'message': u'pos_list/line_list彐版楫棰锛'})
+            pos_list = pos_list.decode('unicode-escape')
             pos_values = eval(pos_list)
             if line_list != '' and line_list != 'null':
+                line_list = line_list.decode('unicode-escape')
                 line_values = eval(line_list)
+            qr_list = qr_list.decode('unicode-escape')
             qr_values = eval(qr_list)
         except:
             return rest.render_json({'status': u'no', 'message': u'pos_list/line_list参数有问题！'})
