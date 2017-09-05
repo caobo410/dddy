@@ -37,8 +37,7 @@
                                     <field name="spec"/>
                                     <field name="unit"/>
                                     <field name="number"/>
-                                    <field name="money"/>
-                                    <field name="sum_money"/>
+                                    <field name="send_type"/>
                                     <field name="order_code"/>
                                 </tree>
                             </field>
@@ -62,6 +61,7 @@
                             <field name='buyers' />
                             <field name='desk_no' />
                             <field name='people_num' />
+                            <field name='sum_gwq' />
                         </group>
                         <group>
                             <field name='shop'/>
@@ -69,6 +69,7 @@
                             <field name='QR' />
                             <field name='print_time' />
                             <field name='order_time' />
+                            <field name='sum_jf' />
                         </group>
                     </group>
                     <notebook colspan="4">

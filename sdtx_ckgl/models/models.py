@@ -63,6 +63,8 @@ class dddy_line(models.Model):
     sum_money = fields.Char(string='金额', help='金额')
     default_id = fields.Char(string='关联', help='关联')
     order_code = fields.Char(string='订单编号', help='订单编号')
+    send_money = fields.Char(string='运费', size=64,  help='运费')
+    send_type = fields.Char(string='运输类型', size=64, help='运输类型')
     user_id = fields.Many2one('res.users', string='Operator')
     date_confirm = fields.Date(string='Date', size=64, help='Date')
     _defaults = {
@@ -85,6 +87,8 @@ class sdtx_pos(models.Model):
     order_time = fields.Char(string='订单日期', help="订单日期")
     line_id = fields.One2many('pos.line', 'line_id', string='明细', copy=True)
     sum_zkb = fields.Char(string='支付折扣币', help="支付折扣币")
+    sum_jf = fields.Char(string='积分', help="积分")
+    sum_gwq = fields.Char(string='购物券', help="购物券")
     messages = fields.Char(string='商家留言', help="商家留言")
     QR = fields.Char(string='二维码', help="二维码")
     user_id = fields.Many2one('res.users', string='Operator')

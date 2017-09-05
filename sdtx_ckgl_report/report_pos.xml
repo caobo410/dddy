@@ -73,6 +73,14 @@
                                 <p>订单总金额：</p>
                             </div>
                             <div class="col-xs-6" style="font-size:16px;text-align: right" t-if="o.sum_price"><p t-field="o.sum_price"/></div>
+                            <div class="col-xs-6" style="text-align: left">
+                                <p>获得积分：</p>
+                            </div>
+                            <div class="col-xs-6" style="font-size:16px;text-align: right" t-if="o.sum_jf"><p t-field="o.sum_jf"/></div>
+                            <div class="col-xs-6" style="text-align: left">
+                                <p>获得购物券：</p>
+                            </div>
+                            <div class="col-xs-6" style="font-size:16px;text-align: right" t-if="o.sum_gwq"><p t-field="o.sum_gwq"/></div>
                         </div>
                         <div class="row" style="text-align:center">
                             <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.QR, 600, 150)" style="width:200px;height:200px;"/>
