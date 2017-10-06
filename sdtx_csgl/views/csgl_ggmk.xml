@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_form_csgl_ggmk" model="ir.ui.view">
+            <field name="name">功能模块维护</field>
+            <field name="model">csgl.ggmk</field>
+            <field name="arch" type="xml">
+                <form string="窗体名称" version="7.0">
+                    <!--<header>-->
+                        <!--<button name="invoice_recreate" states="invoice_except" string="Recreate Invoice"-->
+                                <!--groups="base.group_user"/>-->
+                        <!--<field name="state" widget="statusbar" statusbar_visible="draft,sent,invoiced,done"-->
+                               <!--statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>-->
+                    <!--</header>-->
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="grade_typ"/>
+                                <field name="messages"/>
+                            </group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="date_confirm"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_csgl_ggmk" model="ir.ui.view">
+            <field name="name">功能模块列表</field>
+            <field name="model">csgl.ggmk</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="grade_typ"/>
+                    <field name="user_id"/>
+                    <field name="date_confirm"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--  窗体事件 查询  Search  graph,gantt-->
+        <record id="action_csgl_ggmk" model="ir.actions.act_window">
+          <field name="name">功能模块管理</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">csgl.ggmk</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+              功能模块
+            </p>
+          </field>
+        </record>
+
+        <menuitem name="模块管理" id="menu_three_csgl_ggmk" parent="menu_two_csgl_jcsj" action="action_csgl_ggmk" sequence="2"/>
+
+
+    </data>
+</openerp>

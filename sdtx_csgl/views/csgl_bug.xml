@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_form_csgl_bug" model="ir.ui.view">
+            <field name="name">问题列表</field>
+            <field name="model">csgl.bug</field>
+            <field name="arch" type="xml">
+                <form string="窗体名称" version="7.0">
+                    <!--<header>-->
+                    <!--<button name="invoice_recreate" states="invoice_except" string="Recreate Invoice"-->
+                    <!--groups="base.group_user"/>-->
+                    <!--<field name="state" widget="statusbar" statusbar_visible="draft,sent,invoiced,done"-->
+                    <!--statusbar_colors='{"invoice_except":"red","waiting_date":"blue"}'/>-->
+                    <!--</header>-->
+                    <sheet>
+                        <h1> 名称
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="ggmk_one_id"/>
+                                <field name="kfry_id"/>
+                            </group>
+                            <group>
+                                <field name="ggmk_two_id"/>
+                                <field name="type"/>
+                                <field name="grade_typ"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="页卡">
+                                <field name="messages"/>
+                            </page>
+                        </notebook>
+                        <group>
+                            <group>
+                                <div>
+                                    <field name="image" widget='image' class="oe_left oe_avatar"
+                                           options='{"preview_image": "image", "size": [300, 300]}'/>
+                                </div>
+                            </group>
+                            <group>
+                                <div>
+                                    <field name="image_one" widget='image' class="oe_left oe_avatar"
+                                           options='{"preview_image": "image_one", "size": [300, 300]}'/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="check_id"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="check_date"/>
+                                <field name="date_confirm"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_csgl_bug" model="ir.ui.view">
+            <field name="name">问题列表</field>
+            <field name="model">csgl.bug</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name"/>
+                    <field name="ggmk_one_id"/>
+                    <field name="kfry_id"/>
+                    <field name="type"/>
+                    <field name="grade_typ"/>
+                    <field name="user_id"/>
+                    <field name="date_confirm"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_search_csgl_bug" model="ir.ui.view">
+            <field name="name">查询</field>
+            <field name="model">csgl.bug</field>
+            <field name="arch" type="xml">
+                <search string="查询">
+                    <field name="name" string="名称"/>
+                    <field name="kfry_id" string="开发人员"/>
+                    <field name="user_id" string="制单人"/>
+                    <field name="grade_typ" string="问题等级"/>
+                    <field name="type" string="类型"/>
+                    <field name="date_confirm" string="制单日期"/>
+                    <group expand="0" string="分组">
+                        <filter string="开发人员" context="{'group_by':'kfry_id'}"/>
+                        <filter string="制单人" context="{'group_by':'user_id'}"/>
+                        <filter string="问题等级" context="{'group_by':'grade_typ'}"/>
+                        <filter string="类型" context="{'group_by':'type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--  窗体事件 查询  Search  graph,gantt-->
+        <record id="action_csgl_bug" model="ir.actions.act_window">
+            <field name="name">功能模块管理</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">csgl.bug</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    功能模块
+                </p>
+            </field>
+        </record>
+
+
+
+        <menuitem name="问题管理" id="menu_two_csgl_bug" parent="menu_one_csgl" sequence="2"/>
+        <menuitem name="问题管理" id="menu_three_csgl_bug" parent="menu_two_csgl_bug" action="action_csgl_bug" sequence="1"/>
+
+
+    </data>
+</openerp>
